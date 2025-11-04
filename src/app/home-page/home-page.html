@@ -1,0 +1,9 @@
+<h1>all thought</h1>
+@if(listOfThoughts.length>0){
+    @for(x of listOfThoughts; track x.id){
+        <div>
+            <h3>{{x.title}}</h3>
+            <p>{{x.desc}}</p>
+        </div>
+    }
+}
