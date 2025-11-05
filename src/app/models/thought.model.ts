@@ -8,6 +8,7 @@ export class Thought{
     id!:number;
     title!:string;
     imagePath!:string;
+    image!:string;
     desc!:string;
     date!:Date;
     user!:Users;

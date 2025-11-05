@@ -4,6 +4,11 @@
         <div>
             <h3>{{x.title}}</h3>
             <p>{{x.desc}}</p>
+            @if(x.image){
+                <img src="'data:image/jpeg;base64,'+ x.image"
+                alt="thought image"
+                class="thought-image"/>
+            }
         </div>
     }
 }

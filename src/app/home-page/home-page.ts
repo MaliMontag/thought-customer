@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ThoughtService } from '../services/thought.service';
 import { Thought } from '../models/thought.model';
 
@@ -8,16 +8,21 @@ import { Thought } from '../models/thought.model';
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
 listOfThoughts:Thought[]=[];
 
-  constructor(private service:ThoughtService) {
-    this.service.getThoughts().subscribe(data=>{
-      console.log(data);
-      //לברר שהתחביר נכון
-      this.listOfThoughts=data as Thought[];
-    }
-    );
+  constructor(private service:ThoughtService) {}
+
+
+  ngOnInit(): void {
+    this.service.getThoughts().subscribe({
+      next: (data) => {
+        this.listOfThoughts = data;
+      },
+      error: (err) => {
+        console.error('Error fetching thoughts', err);
+      }
+    });
   }
 }
