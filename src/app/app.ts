@@ -1,10 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SignIn } from './sign-in/sign-in';
+import { HomePage } from "./home-page/home-page";
+import { SignUp } from "./sign-up/sign-up";
+import { ThoughtDetails } from "./thoughtDetails/thoughtDetails";
+import { NotFound } from './not-found/not-found';
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [RouterModule, SignIn],
+  imports: [RouterModule, SignIn, HomePage, SignUp, ThoughtDetails, NotFound],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

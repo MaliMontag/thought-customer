@@ -1,1 +1,18 @@
-<p>my-account works!</p>
+<div>
+    <h1>MY ACCOUNT</h1>
+    <h2>My thoughts:</h2>
+    @if(userThoughts.length>0){
+        @for(t of userThoughts; track t.id){
+            <div>
+                <h3>{{t.title}}</h3>
+                <p>{{t.desc}}</p>
+                @if(t.image){
+                   <img [src]="getImageUrl(t.image)" 
+             alt="thought image" 
+             class="thought-image"/>
+                }
+            </div>
+            <button (click)="showDetails(t)">watch</button>
+        }
+    }
+</div>

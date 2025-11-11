@@ -1,1 +1,31 @@
-<p>sign-up works!</p>
+<div class="signUp">
+    <h1>SIGN UP</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="signingUp()">
+
+        <!--user name  -->
+        <div>
+            <label for="userName">user name:</label>
+            <input type="text" id="userName" formControlName="userName" />
+        </div>
+
+        <!-- password -->
+        <div>
+            <label for="password">password</label>
+            <input type="password" id="password" formControlName="password" />
+        </div>
+
+        <!-- email -->
+        <div>
+            <label for="email">eMail:</label>
+            <input type="text" id="email" formControlName="eMail" />
+        </div>
+
+        <!-- image??? -->
+        <div>
+            <input type="file" id="image" formControlName="image" (change)="onFileSelected($event)">
+            
+        </div>
+
+        <button (click)="goToAccount()" type="submit" [disabled]="signUpForm.invalid">SIGN UP</button>
+    </form>
+</div>

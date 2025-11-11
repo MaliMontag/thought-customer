@@ -17,4 +17,8 @@ export class ThoughtService {
   getThoughts(): Observable<Thought[]> {
     return this.http.get<Thought[]>(`${this.baseUrl}/getAllThoughts`);
   }
+
+  getThoughtById(id: number): Observable<Thought> {
+    return this.http.get<Thought>(`${this.baseUrl}/getThought/${id}`);
+  }
 }

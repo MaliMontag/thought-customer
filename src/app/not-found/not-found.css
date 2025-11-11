@@ -1,0 +1,107 @@
+/* מיכל מרכזי והגדרות כלליות */
+.not-found-container {
+    direction: rtl;
+    text-align: center;
+    padding: 50px 20px;
+    max-width: 600px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif; 
+}
+
+/* קוד השגיאה והאיור */
+.illustration-wrapper {
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.error-code {
+    font-size: 8em;
+    font-weight: 900;
+    color: #f7f7f7; /* צבע בהיר מאוד ברקע */
+    position: relative;
+    display: block;
+    line-height: 1;
+}
+
+.rocket-icon {
+    font-size: 3em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #007bff; /* צבע כחול בולט */
+    z-index: 10;
+}
+
+/* כותרת והסבר */
+.main-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* אפשרויות ניווט (כפתורים) */
+.navigation-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* רווח בין הכפתורים */
+    margin-bottom: 40px;
+}
+
+.back-home-button, .search-button {
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* כפתור ראשי - חזור לדף הבית */
+.back-home-button {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+.back-home-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 86, 179, 0.2);
+}
+
+/* כפתור משני - חיפוש */
+.search-button {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.search-button:hover {
+    background-color: #f0f8ff;
+    color: #0056b3;
+}
+
+/* הערת מגע */
+.contact-hint {
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* רספונסיביות - במובייל הכפתורים נערמים אחד על השני */
+@media (max-width: 500px) {
+    .navigation-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .back-home-button, .search-button {
+        width: 100%;
+    }
+    .error-code {
+        font-size: 6em;
+    }
+}

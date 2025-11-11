@@ -31,3 +31,22 @@
     voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Donec vel volutpat ipsum. Integer nunc magna, posuere ut tincidunt eget, egestas vitae sapien. Morbi dapibus luctus odio.
     </p>
 </div> -->
+
+<div class="sign in">
+    <h1>SIGN IN</h1>
+    <form [formGroup]="signInForm" (ngSubmit)="signingIn()">
+        <!-- email -->
+        <div>
+            <label for="email">eMail:</label>
+            <input type="text" id="email" formControlName="eMail" />
+        </div>
+
+        <!-- password -->
+        <div>
+            <label for="password">password</label>
+            <input type="password" id="password" formControlName="password" />
+        </div>
+
+        <button type="submit" [disabled]="signInForm.invalid">SIGN IN</button>
+    </form>
+</div>

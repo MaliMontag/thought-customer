@@ -1,0 +1,25 @@
+/* sign-up.component.css */
+:host {
+    display: block;
+    padding: 20px;
+    max-width: 450px; /* רוחב מקסימלי לטופס */
+    margin: 50px auto; /* ממורכז בדף */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.full-width-input {
+    width: 100%; /* זה גורם לשדה Material להתפרס לרוחב המקסימלי */
+    margin-bottom: 15px; /* רווח בין השדות */
+}
+
+button {
+    margin-top: 20px; /* רווח מעל כפתור השליחה */
+}
