@@ -1,31 +1,85 @@
-<div class="signUp">
+<!-- <div class="signUp">
     <h1>SIGN UP</h1>
-    <form [formGroup]="signUpForm" (ngSubmit)="signingUp()">
+    <form [formGroup]="signUpForm" (ngSubmit)="signingUp()"> -->
 
         <!--user name  -->
-        <div>
+        <!-- <div>
             <label for="userName">user name:</label>
             <input type="text" id="userName" formControlName="userName" />
-        </div>
+        </div> -->
 
         <!-- password -->
-        <div>
+        <!-- <div>
             <label for="password">password</label>
             <input type="password" id="password" formControlName="password" />
-        </div>
+        </div> -->
 
         <!-- email -->
-        <div>
+        <!-- <div>
             <label for="email">eMail:</label>
             <input type="text" id="email" formControlName="eMail" />
-        </div>
+        </div> -->
 
         <!-- image??? -->
-        <div>
+        <!-- <div>
             <input type="file" id="image" formControlName="image" (change)="onFileSelected($event)">
             
         </div>
 
         <button (click)="goToAccount()" type="submit" [disabled]="signUpForm.invalid">SIGN UP</button>
     </form>
+</div> -->
+
+<div class="form-wrapper">
+    <div class="sign-up-container">
+        <header class="form-header">
+            <h1>הרשמה 📝</h1>
+            <p>הצטרפו עכשיו כדי לשתף את ההגיגים שלכם.</p>
+        </header>
+
+        <form [formGroup]="signUpForm" (ngSubmit)="signingUp()">
+
+            <div class="form-group">
+                <label for="userName">שם משתמש (User Name):</label>
+                <input type="text" id="userName" formControlName="userName" placeholder="לדוגמה: הגרפולוג_המתחיל" class="form-control" />
+                @if (signUpForm.get('userName')?.invalid && signUpForm.get('userName')?.touched) {
+                    <p class="validation-error">שם משתמש הוא שדה חובה.</p>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="email">אימייל (eMail):</label>
+                <input type="email" id="email" formControlName="eMail" placeholder="your@example.com" class="form-control" />
+                @if (signUpForm.get('eMail')?.invalid && signUpForm.get('eMail')?.touched) {
+                    <p class="validation-error">אנא הכנס כתובת אימייל תקינה.</p>
+                }
+            </div>
+            
+            <div class="form-group">
+                <label for="password">סיסמה (Password):</label>
+                <input type="password" id="password" formControlName="password" placeholder="בחר סיסמה חזקה" class="form-control" />
+                @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched) {
+                    <p class="validation-error">הסיסמה היא שדה חובה.</p>
+                }
+            </div>
+
+            <div class="form-group file-upload-group">
+                <label for="image" class="file-label">תמונת פרופיל (אופציונלי):</label>
+                <input type="file" id="image" (change)="onFileSelected($event)" class="file-input-hidden">
+                <label for="image" class="custom-file-upload">
+                    בחירת קובץ
+                    @if (selectedFile) {
+                        <span> ({{ selectedFile.name }})</span>
+                    }
+                </label>
+            </div>
+
+            <!-- <button type="submit" [disabled]="signUpForm.invalid" class="submit-button">
+                הרשמה
+            </button> -->
+                    <button class="button" (click)="goToAccount()" type="submit" [disabled]="signUpForm.invalid">SIGN UP</button>
+
+           
+        </form>
+    </div>
 </div>

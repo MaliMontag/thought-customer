@@ -48,4 +48,12 @@ export class HomePage implements OnInit {
   signingUp() {
     this.router.navigate(['/sign-up']);
   }
+
+  signingOut() {
+    this.router.navigate(['/sign-out']);
+  }
+
+  myAccount() {
+    this.router.navigate(['/my-account']);
+  }
 }

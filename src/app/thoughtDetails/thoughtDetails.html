@@ -1,4 +1,4 @@
-@if (thought) {
+<!-- @if (thought) {
 <div class="thought-details-card">
     <h1 class="detail-title">{{ thought.title }}</h1>
     <p class="detail-desc">{{ thought.desc }}</p>
@@ -10,6 +10,45 @@
     @else {
         <h4>no image</h4>
     }
+</div>
+} @else {
+<p class="loading-message">...טוען פרטי הגיג</p>
+} -->
+
+@if (thought) {
+<div class="thought-details-container">
+    
+    <section class="main-content">
+        <h1 class="detail-title">{{ thought.title }}</h1>
+        
+        @if (thought.image) {
+        <div class="image-wrapper">
+            <img [src]="getImageUrl(thought.image)" alt="תמונת הגיג" class="thought-image" />
+        </div>
+        }
+        
+        <div class="like-count">
+             <span class="like-icon">❤️</span> 159K
+        </div>
+        
+        <p class="detail-desc">{{ thought.desc }}</p>
+
+    </section>
+
+    <aside class="sidebar-details">
+        
+        <div class="user-info-box">
+            <p class="username-label">שם משתמש</p>
+            <!-- <div class="username-content">@{{ thought.userName || 'אנונימי' }}</div> -->
+            <hr class="separator">
+        </div>
+
+        <div class="comments-section">
+            <h3 class="comments-header">תגובות</h3>
+            <p class="comments-placeholder">כאן יופיעו תגובות המשתמשים</p>
+            </div>
+    </aside>
+
 </div>
 } @else {
 <p class="loading-message">...טוען פרטי הגיג</p>

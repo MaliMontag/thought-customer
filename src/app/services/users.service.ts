@@ -28,5 +28,14 @@ export class UsersService {
   getThoughtsByUserId(userId: Number): Observable<any>{
     return this.http.get<any>(`GET http://localhost:8080/api/thoughts/getThoughtsByUserId/${userId}`);
   }
+
+  getUserById(userId: number): Observable<any>{
+    return this.http.get<any>(`http://localhost:8080/api/users/${userId}`);
+  }
+
+  //לעשות פונקציה כזו בJAVA
+  signingOut(userId: number): Observable<any>{
+    return this.http.post<any>(`http://localhost:8080/api/users/signOut`,{userId: userId});
+  }
   
 }

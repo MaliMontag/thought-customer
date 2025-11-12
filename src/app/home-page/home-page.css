@@ -127,7 +127,7 @@
     font-weight: 500;
 }
 
-.details-button {
+.button {
     background-color: #007bff; /* צבע כחול סטנדרטי */
     color: white;
     border: none;
@@ -138,7 +138,7 @@
     transition: background-color 0.2s;
 }
 
-.details-button:hover {
+.button:hover {
     background-color: #0056b3;
 }
 

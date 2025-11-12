@@ -1,6 +1,6 @@
 <div>
     <h1>MY ACCOUNT</h1>
-    <h2>My thoughts:</h2>
+    <!-- <h2>My thoughts:</h2>
     @if(userThoughts.length>0){
         @for(t of userThoughts; track t.id){
             <div>
@@ -14,5 +14,26 @@
             </div>
             <button (click)="showDetails(t)">watch</button>
         }
+    } -->
+
+    @if(user != null){
+    <h1>{{user.userName}}</h1>
+
+    <h2>My thoughts:</h2>
+    @if(user?.toughtsList!= null){
+    @for(x of user?.toughtsList || []; track x.id){
+    <div>
+        <h3>{{x.title}}</h3>
+        <p>{{x.desc}}</p>
+        @if(x.image){
+        <img [src]="getImageUrl(x.image)" alt="thought image" class="thought-image" />
+        }
+    </div>
+    <button (click)="showDetails(x)">watch</button>
+    }
+    }
+    }
+    @else{
+    <h2>Please log in to see your account details.</h2>
     }
 </div>

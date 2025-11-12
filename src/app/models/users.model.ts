@@ -6,6 +6,7 @@ export class Users{
     userName!:string;
     password!:string;
     eMail!:string;
+    image!:string;
     imagePath!:string;
     toughtsList!:Thought[];
     responseList!:Responses[];

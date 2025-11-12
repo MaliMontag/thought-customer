@@ -1,0 +1,169 @@
+/* מיכל מרכז וריכוז טופס */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 20px;
+    background-color: #f0f2f5; /* רקע בהיר */
+    direction: rtl;
+    font-family: Arial, sans-serif;
+}
+
+.sign-up-container {
+    background-color: white;
+    padding: 35px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-header h1 {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.form-header p {
+    color: #666;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* קבוצת שדה (Label + Input) */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #444;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* חשוב לשמירת הרוחב */
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* עיצוב שגיאות ולידציה */
+.validation-error {
+    color: #dc3545; /* אדום שגיאה */
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+.form-control.ng-invalid.ng-touched {
+    border-color: #dc3545; /* מסגרת אדומה אם לא תקין וננגע */
+}
+
+
+/* עיצוב כפתור השליחה */
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    margin-top: 15px;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.submit-button:disabled {
+    background-color: #a0c3e8;
+    cursor: not-allowed;
+}
+
+/* קישור למשתמשים קיימים */
+.already-registered {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.already-registered a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.already-registered a:hover {
+    text-decoration: underline;
+}
+
+/* עיצוב כפתור העלאת קובץ (File Input) */
+/* הסתרת כפתור ברירת המחדל */
+.file-input-hidden {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.custom-file-upload {
+    border: 1px solid #007bff;
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #007bff;
+    background-color: #e6f0ff;
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.custom-file-upload:hover {
+    background-color: #d0e0ff;
+}
+
+.file-upload-group {
+    margin-top: 10px;
+}
+
+.file-upload-group span {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #444;
+}
+
+.button {
+    background-color: #007bff; /* צבע כחול סטנדרטי */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}

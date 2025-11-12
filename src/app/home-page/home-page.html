@@ -57,7 +57,7 @@
                         <span class="interaction-count">👍 {{ x.likesList }}</span>
                         <span class="interaction-count">💬 {{ x.responseList }}</span>
                         
-                        <button class="details-button">
+                        <button class="button">
                             לצפייה ותגובה ➡️
                         </button>
                     </div>
@@ -68,7 +68,8 @@
         <p class="no-thoughts">אין עדיין הגיגים להצגה. בוא והוסף אחד!</p>
     }
 
-    <button (click)="signingIn()">sign in</button>
-    <button (click)="signingUp()">sign up</button>
-
+    <button class="button" (click)="signingIn()" >sign in</button>
+    <button class="button" (click)="signingUp()">sign up</button>
+    <button class="button" (click)="signingOut()" >sign out</button>
+    <button class="button" (click)="myAccount()">החשבון שלי</button>
 </main>

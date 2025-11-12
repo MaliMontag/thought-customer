@@ -27,7 +27,7 @@ export class SignIn implements OnInit {
         console.log(res);
         // alert("התחברת בהצלחה!");
         localStorage.setItem("userId", res);
-        this.router.navigate(["/"]);
+        this.router.navigate(["/my-account"]);
       },
       error: (err) => {
         console.log(err);

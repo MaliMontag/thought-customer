@@ -1,0 +1,139 @@
+/* מבנה ראשי: קונטיינר רספונסיבי */
+.thought-details-container {
+    direction: rtl; /* עברית מימין לשמאל */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    /* מחלק את הדף לשני טורים עבור מסכים גדולים: 
+       הטור הראשי תופס 3 יחידות והצדדי 1 יחידה */
+    grid-template-columns: 3fr 1fr; 
+    gap: 40px;
+}
+
+/* כותרת, תיאור ותמונה */
+.main-content {
+    /* מאפשר לתוכן הפנימי להימתח */
+    display: flex; 
+    flex-direction: column;
+}
+
+.detail-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.image-wrapper {
+    margin: 20px 0;
+    max-width: 100%;
+    /* יחס גובה-רוחב קבוע כדי שהפריסה לא תשתנה בטעינה */
+    aspect-ratio: 16 / 9; 
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thought-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* חותך את התמונה להתאים למיכל */
+}
+
+.detail-desc {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+    white-space: pre-wrap; /* שומר על מעברי שורה בתיאור */
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* ספירת לייקים */
+.like-count {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ff4155;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+.like-icon {
+    margin-left: 5px;
+    font-size: 1.5em;
+}
+
+/* טור צדדי (Sidebar) */
+.sidebar-details {
+    padding-top: 10px;
+}
+
+.user-info-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.username-label {
+    font-size: 0.9em;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.username-content {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #007bff; /* צבע מותאם לנושא האתר */
+}
+
+.separator {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px dashed #eee;
+}
+
+.comments-section {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fcfcfc;
+}
+
+.comments-header {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* רספונסיביות למסכים קטנים (מובייל וטאבלט) */
+@media (max-width: 900px) {
+    .thought-details-container {
+        /* במקום שני טורים, מציג הכול בטור אחד */
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    .main-content {
+        order: 1; /* מוודא שהתוכן הראשי יופיע לפני הצדדי */
+    }
+    .sidebar-details {
+        order: 2;
+    }
+}
+
+/* הודעת טעינה */
+.loading-message {
+    text-align: center;
+    font-size: 1.5em;
+    color: #999;
+    margin-top: 100px;
+}
