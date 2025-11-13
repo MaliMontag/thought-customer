@@ -23,6 +23,6 @@ export class ThoughtService {
   }
 
   uploadingThought(thoughtData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/uploadThought`, thoughtData);
+    return this.http.post(`${this.baseUrl}/uploadThought`, thoughtData, { withCredentials: true });
   }
 }

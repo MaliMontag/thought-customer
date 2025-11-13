@@ -11,31 +11,31 @@ import SignUp from '../models/signUp.model';
 export class UsersService {
   constructor(private http: HttpClient) { }
 
-  
-  getUsers() {
-    return this.http.get('/api/users');
+  private baseUrl = 'http://localhost:8080/api/users';
+  getUsers() : Observable<any>{
+    return this.http.get(`${this.baseUrl}/getAllUsers`, { withCredentials: true });
   }
 
   //הוספתי פונקציה כדי לשלוח נתוני SIGNIN
   signingIn(signIn: SignIn): Observable<any>{
-    return this.http.post<any>('http://localhost:8080/api/users/signIn',signIn);
+    return this.http.post<any>(`${this.baseUrl}/signIn`,signIn,  { withCredentials: true });
   }
 
   singingUp(signUp:FormData) : Observable<any>{
-    return this.http.post<any>('http://localhost:8080/api/users/signUp',signUp);
+    return this.http.post<any>(`${this.baseUrl}/signUp`,signUp,  { withCredentials: true });
   }
 
-  getThoughtsByUserId(userId: Number): Observable<any>{
-    return this.http.get<any>(`GET http://localhost:8080/api/thoughts/getThoughtsByUserId/${userId}`);
-  }
+  // getThoughtsByUserId(userId: Number): Observable<any>{
+  //   return this.http.get<any>(`GET http://localhost:8080/api/thoughts/getThoughtsByUserId/${userId}`);
+  // }
 
   getUserById(userId: number): Observable<any>{
-    return this.http.get<any>(`http://localhost:8080/api/users/getUser/${userId}`);
+    return this.http.get<any>(`${this.baseUrl}/getUser/${userId}`,  { withCredentials: true });
   }
 
   //לעשות פונקציה כזו בJAVA
   signingOut(userId: number): Observable<any>{
-    return this.http.post<any>(`http://localhost:8080/api/users/signOut`,{userId: userId});
+    return this.http.post<any>(`${this.baseUrl}/signOut`,{userId},  { withCredentials: true });
   }
   
 }
