@@ -27,6 +27,8 @@ export class ThoughtDetails implements OnInit {
       this._thoughtService.getThoughtById(id).subscribe({
         next: (res) => {
           this.thought = res;
+          console.log(this.thought);
+          
         },
         error: (err) => {
           console.log(err);

@@ -56,4 +56,14 @@ export class HomePage implements OnInit {
   myAccount() {
     this.router.navigate(['/my-account']);
   }
+
+  uploadThought(){
+    this.router.navigate(['/upload-thought']);
+  }
+
+
+  
+  // checkLike(){
+
+  // }
 }

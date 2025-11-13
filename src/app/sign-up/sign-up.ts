@@ -27,35 +27,35 @@ export class SignUp implements OnInit {
   ngOnInit(): void { }
 
   onFileSelected(event: any) {
-    if(event.target.files.length > 0) {
+    if (event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
     }
   }
-  signingUp(){
+  signingUp() {
     console.log(this.signUpForm.value);
     const uploadData = new FormData();
-    if(this.selectedFile){
+    if (this.selectedFile) {
       uploadData.append('image', this.selectedFile, this.selectedFile.name);
     }
     uploadData.append('userName', this.signUpForm.get('userName')!.value);
     uploadData.append('eMail', this.signUpForm.get('eMail')!.value);
     uploadData.append('password', this.signUpForm.get('password')!.value);
     this._usersService.singingUp(uploadData).subscribe({
-      next: (res)=>{
+      next: (res) => {
         console.log(res);
-        localStorage.setItem("userId",res.id);
+        localStorage.setItem("userId", res.id);
         // this.router.navigate(["?"]);
-        
+
       },
-      error:(err)=>{
+      error: (err) => {
         console.log(err);
-        
+
       }
     })
-    
+
   }
-  goToAccount(){
-    this.router.navigate(["/my-account",localStorage.getItem("userId")]);
+  goToAccount() {
+    this.router.navigate(["/my-account", localStorage.getItem("userId")]);
   }
 
 }

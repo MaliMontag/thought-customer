@@ -21,4 +21,8 @@ export class ThoughtService {
   getThoughtById(id: number): Observable<Thought> {
     return this.http.get<Thought>(`${this.baseUrl}/getThought/${id}`);
   }
+
+  uploadingThought(thoughtData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/uploadThought`, thoughtData);
+  }
 }

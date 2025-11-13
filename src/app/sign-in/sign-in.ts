@@ -25,7 +25,7 @@ export class SignIn implements OnInit {
     this._usersService.signingIn(this.signInForm.value).subscribe({
       next: (res) => {
         console.log(res);
-        // alert("התחברת בהצלחה!");
+         alert("התחברת בהצלחה!");
         localStorage.setItem("userId", res);
         this.router.navigate(["/my-account"]);
       },

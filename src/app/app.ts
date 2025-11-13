@@ -5,10 +5,12 @@ import { HomePage } from "./home-page/home-page";
 import { SignUp } from "./sign-up/sign-up";
 import { ThoughtDetails } from "./thoughtDetails/thoughtDetails";
 import { NotFound } from './not-found/not-found';
+import { MyAccount } from './my-account/my-account';
+import { UploadThought } from './upload-thought/upload-thought';
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [RouterModule, SignIn, HomePage, SignUp, ThoughtDetails, NotFound],
+  imports: [RouterModule, SignIn, HomePage, SignUp, ThoughtDetails, NotFound, MyAccount, UploadThought],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

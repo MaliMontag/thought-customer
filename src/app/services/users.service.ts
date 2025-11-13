@@ -30,7 +30,7 @@ export class UsersService {
   }
 
   getUserById(userId: number): Observable<any>{
-    return this.http.get<any>(`http://localhost:8080/api/users/${userId}`);
+    return this.http.get<any>(`http://localhost:8080/api/users/getUser/${userId}`);
   }
 
   //לעשות פונקציה כזו בJAVA

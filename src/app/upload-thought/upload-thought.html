@@ -1,1 +1,38 @@
-<p>upload-thought works!</p>
+<div>
+    <div>
+        <h2>Upload Your Thought</h2>
+        @if(user!=null){
+        <form [formGroup]="uploadThoughtForm" (ngSubmit)="uploading()">
+            <div>
+                <label for="title">:(Title) כותרת</label>
+                <input type="text" id="title" formControlName="title" placeholder="הכנס כותרת למחשבה שלך" />
+                @if(uploadThoughtForm.get('title')?.invalid && uploadThoughtForm.get('title')?.touched) {
+                <p class="validation-error">כותרת היא שדה חובה.</p>
+                }
+            </div>
+
+            <div>
+                <label for="desc">תיאור:(desc)</label>
+                <input type="text" id="desc" formControlName="desc" placeholder="הכנס את ההגיג שלך כאן" />
+                @if(uploadThoughtForm.get('desc')?.invalid && uploadThoughtForm.get('desc')?.touched) {
+                <p class="validation-error">תיאור הוא שדה חובה.</p>
+                }
+            </div>
+
+            <div>
+                <label for="image">תמונה</label>
+                <input type="file" id="image" (change)="OnFileSelected($event)">
+                <label for="image">
+                    @if (selectedFile) {
+                    <span>({{selectedFile.name}})</span>
+                    }
+                </label>
+            </div>
+            <button class="button" type="submit" [disabled]="uploadThoughtForm.invalid">להעלאת
+                התוכן</button>
+
+        </form>
+    } @else{
+    <h2>Please log in to upload a thought.</h2>}
+    </div>
+</div>

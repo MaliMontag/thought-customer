@@ -15,7 +15,6 @@ export class MyAccount implements OnInit {
 
   constructor(
     private _usersService: UsersService,
-    private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private router: Router) { }
 
@@ -23,24 +22,24 @@ export class MyAccount implements OnInit {
 
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      const userIdString=localStorage.getItem('userId');
-      if(userIdString){
-        const userId=+userIdString;
-        this._usersService.getUserById(userId).subscribe({
+    const userIdString = localStorage.getItem('userId');
+    if (userIdString) {
+      const userId = +userIdString;
+      this._usersService.getUserById(userId).subscribe({
         next: (res) => {
           this.user = res;
+          console.log(this.user);
+          
         },
         error: (err) => {
           console.log(err);
         }
       });
-      }
-      else{
-        console.warn('User ID not found in local storage. Redirecting to sign in.');
+    }
+    else {
+      console.warn('User ID not found in local storage. Redirecting to sign in.');
       this.router.navigate(['/signIn']);
-      }
-    })
+    }
   }
 
   showDetails(thought: Thought) {

@@ -4,13 +4,13 @@
         <div>
             <h3>{{x.title}}</h3>
             <p>{{x.desc}}</p> -->
-            <!--  -->
-            <!-- @if(x.user.imagePath){
+<!--  -->
+<!-- @if(x.user.imagePath){
                <img [src]="getImageUrl(x.user.imageP"
                alt="user image" 
                class="user-image"/>
             } -->
-            <!-- @if(x.image){
+<!-- @if(x.image){
                <img [src]="getImageUrl(x.image)" 
          alt="thought image" 
          class="thought-image"/>
@@ -27,49 +27,50 @@
     </header>
 
     @if (listOfThoughts.length > 0) {
-        <section class="thoughts-grid">
-            @for (x of listOfThoughts; track x.id) {
-                <article class="thought-card" (click)="showDetails(x)">
-                    <div class="card-header">
-                        <!-- <img [src]="getImageUrl(x.userProfileImage)" 
+    <section class="thoughts-grid">
+        @for (x of listOfThoughts; track x.id) {
+        <article class="thought-card" (click)="showDetails(x)">
+            <div class="card-header">
+                <!-- <img [src]="getImageUrl(x.userProfileImage)" 
                              alt="תמונת פרופיל" 
                              class="user-avatar" 
                              *ngIf="x.userProfileImage">
                         <div class="user-info">
                             <span class="username">@{{ x.userName || 'אנונימי' }}</span>
                             </div> -->
-                    </div>
+            </div>
 
-                    <div class="card-content">
-                        <h3 class="thought-title">{{ x.title }}</h3>
-                        <p class="thought-description">{{ x.desc }}</p>
-                        
-                        @if (x.image) {
-                            <div class="image-wrapper">
-                                <img [src]="getImageUrl(x.image)" 
-                                     alt="תמונת הגיג" 
-                                     class="thought-image"/>
-                            </div>
-                        }
-                    </div>
+            <div class="card-content">
+                <h3 class="thought-title">{{ x.title }}</h3>
+                <p class="thought-description">{{ x.desc }}</p>
 
-                    <div class="card-footer">
-                        <span class="interaction-count">👍 {{ x.likesList }}</span>
-                        <span class="interaction-count">💬 {{ x.responseList }}</span>
-                        
-                        <button class="button">
-                            לצפייה ותגובה ➡️
-                        </button>
-                    </div>
-                </article>
-            }
-        </section>
+                @if (x.image) {
+                <div class="image-wrapper">
+                    <img [src]="getImageUrl(x.image)" alt="תמונת הגיג" class="thought-image" />
+                </div>
+                }
+            </div>
+
+            <div class="card-footer">
+                <!-- <button (click)="checkLike()">❤️</button> -->
+                <button>❤️</button>
+                <span class="interaction-count">{{ x.likesList }}</span>
+                <!-- <span class="interaction-count">💬 {{ x.responseList }}</span> -->
+
+                <button class="button">
+                    לצפייה ותגובה ➡️
+                </button>
+            </div>
+        </article>
+        }
+    </section>
     } @else {
-        <p class="no-thoughts">אין עדיין הגיגים להצגה. בוא והוסף אחד!</p>
+    <p class="no-thoughts">אין עדיין הגיגים להצגה. בוא והוסף אחד!</p>
     }
 
-    <button class="button" (click)="signingIn()" >sign in</button>
+    <button class="button" (click)="signingIn()">sign in</button>
     <button class="button" (click)="signingUp()">sign up</button>
-    <button class="button" (click)="signingOut()" >sign out</button>
+    <button class="button" (click)="signingOut()">sign out</button>
     <button class="button" (click)="myAccount()">החשבון שלי</button>
+    <button class="button" (click)="uploadThought()">העלאת תוכן</button>
 </main>
