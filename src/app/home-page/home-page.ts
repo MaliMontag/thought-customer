@@ -23,9 +23,9 @@ export class HomePage implements OnInit {
       next: (data) => {
         this.listOfThoughts = data;
       },
-      // error: (err) => {
-      //   console.error('Error fetching thoughts', err);
-      // }
+      error: (err) => {
+        console.error('Error fetching thoughts', err);
+      }
     });
   }
 

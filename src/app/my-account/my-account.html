@@ -16,12 +16,13 @@
         }
     } -->
 
-    @if(user){
-    <h1>{{user.userName}}</h1>
-
+    @if(user)
+    {
+    <div>{{user.userName}}</div>
+    }
     <h2>My thoughts:</h2>
-    @if(user.toughtsList!= null){
-    @for(x of user.toughtsList || []; track x.id){
+    @if(myThoughts!= null){
+    @for(x of myThoughts || []; track x.id){
     <div>
         <h3>{{x.title}}</h3>
         <p>{{x.desc}}</p>
@@ -32,8 +33,8 @@
     <button (click)="showDetails(x)">watch</button>
     }
     }
-    }
-    @else{
+
+    <!-- @else{
     <h2>Please log in to see your account details.</h2>
-    }
+    } -->
 </div>

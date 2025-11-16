@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Thought } from '../models/thought.model';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Users } from '../models/users.model';
+import { ThoughtService } from '../services/thought.service';
+
 @Component({
   selector: 'app-my-account',
   imports: [RouterModule, CommonModule],
@@ -12,35 +14,57 @@ import { Users } from '../models/users.model';
   styleUrl: './my-account.css',
 })
 export class MyAccount implements OnInit {
-
+  user: Users | null = null;
+  myThoughts: Thought[] = [];
+  userId: number | null = null;
   constructor(
     private _usersService: UsersService,
     private sanitizer: DomSanitizer,
-    private router: Router) { }
+    private router: Router,
+    private cdr: ChangeDetectorRef, private thoughtService: ThoughtService) {
 
-  user: Users | null = null;
+  }
 
 
   ngOnInit(): void {
     const userIdString = localStorage.getItem('userId');
+    console.log(userIdString);
+
     if (userIdString) {
-      const userId = +userIdString;
-      this._usersService.getUserById(userId).subscribe({
-        next: (res) => {
-          this.user = res;
-          console.log(this.user);
-          
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
+      this.userId = +userIdString;
+      this._usersService.getUserById(this.userId).subscribe(
+        {
+          next: (res) => {
+            this.user = res;
+            console.log(this.user?.userName);
+            //          this.cdr.detectChanges();
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+      this.getMyThoughts(this.userId);
+
     }
     else {
       console.warn('User ID not found in local storage. Redirecting to sign in.');
       this.router.navigate(['/signIn']);
     }
   }
+
+  getMyThoughts(userId: number) {
+    this.thoughtService.getThoughtByUserId(userId).subscribe(
+      {
+        next: (res) => {
+          this.myThoughts = res;
+          console.log(this.myThoughts);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+  }
+
 
   showDetails(thought: Thought) {
     this.router.navigate(['/thoughtDetails', thought.id])

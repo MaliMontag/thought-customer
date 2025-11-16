@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Users } from '../models/users.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,7 +28,7 @@ export class SignIn implements OnInit {
       next: (res) => {
         console.log(res);
          alert("התחברת בהצלחה!");
-        localStorage.setItem("userId", res);
+        localStorage.setItem("userId",res );
         this.router.navigate(["/my-account"]);
       },
       error: (err) => {

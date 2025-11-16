@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import SignIn from '../models/signIn.model';
 import SignUp from '../models/signUp.model';
+import { Users } from '../models/users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UsersService {
 
   //הוספתי פונקציה כדי לשלוח נתוני SIGNIN
   signingIn(signIn: SignIn): Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}/signIn`,signIn,  { withCredentials: true });
+    return this.http.post<any>(`${this.baseUrl}/signIn`,signIn);
   }
 
   singingUp(signUp:FormData) : Observable<any>{
@@ -30,12 +31,12 @@ export class UsersService {
   // }
 
   getUserById(userId: number): Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/getUser/${userId}`,  { withCredentials: true });
+    return this.http.get<any>(`${this.baseUrl}/getUser/${userId}`);
   }
 
   //לעשות פונקציה כזו בJAVA
   signingOut(userId: number): Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}/signOut`,{userId},  { withCredentials: true });
+    return this.http.post<any>(`${this.baseUrl}/signOut`,{userId});
   }
   
 }
