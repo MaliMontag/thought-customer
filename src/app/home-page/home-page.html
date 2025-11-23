@@ -26,9 +26,21 @@
         <p>חידות, בדיחות ורעיונות חדשים מהקהילה</p>
     </header>
 
-    @if (listOfThoughts.length > 0) {
+    <div class="categories-buttons">
+        @for (cat of categories; track cat) {
+        <button (click)="filterByCategory(cat)">
+            {{ cat }}
+        </button>
+        }@empty {
+        <p>אין קטגוריות להצגה</p>
+        }
+        <button (click)="showAll()">הצג הכל</button>
+    </div>
+
+
+    @if (displayedThoughts.length > 0) {
     <section class="thoughts-grid">
-        @for (x of listOfThoughts; track x.id) {
+        @for (x of displayedThoughts; track x.id) {
         <article class="thought-card" (click)="showDetails(x)">
             <div class="card-header">
                 <img [src]="getImageUrl(x.user.image)" 
@@ -70,6 +82,8 @@
     } @else {
     <p class="no-thoughts">אין עדיין הגיגים להצגה. בוא והוסף אחד!</p>
     }
+
+   
 
     <button class="button" (click)="signingIn()">sign in</button>
     <button class="button" (click)="signingUp()">sign up</button>

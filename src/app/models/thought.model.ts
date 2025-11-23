@@ -14,6 +14,6 @@ export class Thought{
     user!:Users;
     category!:Category;
     age!:Age;
-    responseList!:Responses[];
-    likesList!:Likes[];
+    responseList?:Responses[];
+    likesList?:Likes[];
 }

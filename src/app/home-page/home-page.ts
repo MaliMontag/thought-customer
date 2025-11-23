@@ -14,14 +14,18 @@ import { CommonModule } from '@angular/common';
 export class HomePage implements OnInit {
 
   listOfThoughts: Thought[] = [];
+  categories: string[] = [];
+
+  displayedThoughts = this.listOfThoughts;
 
   constructor(private service: ThoughtService, private sanitizer: DomSanitizer, private router: Router) { }
 
-    //פונקצית הבאת כל הנתונים מהשרת
+  //פונקצית הבאת כל הנתונים מהשרת
   ngOnInit(): void {
     this.service.getThoughts().subscribe({
       next: (data) => {
         this.listOfThoughts = data;
+        this.categories = [...new Set(this.listOfThoughts.map(t => t.category.categoryName))];
       },
       error: (err) => {
         console.error('Error fetching thoughts', err);
@@ -36,10 +40,21 @@ export class HomePage implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(fullUrl);
   }
 
+  filterByCategory(categoryName: string) {
+    this.displayedThoughts=this.listOfThoughts.filter(
+    t => t.category.categoryName === categoryName
+  );
+  }
+
+  showAll(){
+    this.displayedThoughts=this.listOfThoughts;
+  }
+
   //פונקצית מעבר להגיג ספציפי
   showDetails(thought: Thought) {
     this.router.navigate(['/thoughtDetails', thought.id])
   }
+
 
   signingIn() {
     this.router.navigate(['/sign-in']);
@@ -57,12 +72,10 @@ export class HomePage implements OnInit {
     this.router.navigate(['/my-account']);
   }
 
-  uploadThought(){
+  uploadThought() {
     this.router.navigate(['/upload-thought']);
   }
 
-
-  
   // checkLike(){
 
   // }
