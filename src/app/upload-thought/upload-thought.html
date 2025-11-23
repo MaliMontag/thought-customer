@@ -28,11 +28,27 @@
                     }
                 </label>
             </div>
-            <button class="button" type="submit" [disabled]="uploadThoughtForm.invalid">להעלאת
-                התוכן</button>
+
+            <div>
+                <label for="age">גיל:</label>
+                <select id="age" formControlName="age">
+                    <option value="">בחר גיל</option>
+                    @for (age of ageOptions; track age){
+                    <option [value]="age.id">{{ age.ageName }}</option>
+                    }
+                </select>
+
+                @if(uploadThoughtForm.get('age')?.invalid && uploadThoughtForm.get('age')?.touched) {
+                <p class="validation-error">נא לבחור גיל.</p>
+                }
+            </div>
+
+
+
+            <button class="button" type="submit" [disabled]="uploadThoughtForm.invalid">להעלאת התוכן</button>
 
         </form>
-    } @else{
-    <h2>Please log in to upload a thought.</h2>}
+        } @else{
+        <h2>Please log in to upload a thought.</h2>}
     </div>
 </div>

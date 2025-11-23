@@ -3,6 +3,6 @@ import { Users } from "./users.model";
 
 export class Age{
     id!:number;
-    user!:Users;
+    ageName!: string;
     thoughtList!:Thought[];
 }
