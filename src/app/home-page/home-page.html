@@ -31,13 +31,13 @@
         @for (x of listOfThoughts; track x.id) {
         <article class="thought-card" (click)="showDetails(x)">
             <div class="card-header">
-                <!-- <img [src]="getImageUrl(x.userProfileImage)" 
+                <img [src]="getImageUrl(x.user.image)" 
                              alt="תמונת פרופיל" 
                              class="user-avatar" 
-                             *ngIf="x.userProfileImage">
+                             *ngIf="x.user.image">
                         <div class="user-info">
-                            <span class="username">@{{ x.userName || 'אנונימי' }}</span>
-                            </div> -->
+                            <span class="username">@{{ x.user.userName || 'אנונימי' }}</span>
+                            </div>
             </div>
 
             <div class="card-content">
