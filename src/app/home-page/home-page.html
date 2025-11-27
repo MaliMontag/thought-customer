@@ -27,8 +27,8 @@
     </header>
 
     <div class="categories-buttons">
-        @for (cat of categories; track cat) {
-        <button (click)="filterByCategory(cat)">
+        @for (cat of categories; track cat.categoryName) {
+        <button (click)="filterByCategory(cat.categoryName)">
             {{ cat }}
         </button>
         }@empty {
@@ -83,7 +83,19 @@
     <p class="no-thoughts">אין עדיין הגיגים להצגה. בוא והוסף אחד!</p>
     }
 
-   
+    
+    <div>
+        <label>סינון לפי גיל:</label>
+        <select (change)="filterByAge($event)">
+            <option value="">הצג הכל</option>
+
+            @for (age of ageOptions; track age.id) {
+            <option [value]="age.id">{{ age.ageName }}</option>
+            }
+        </select>
+    </div>
+
+
 
     <button class="button" (click)="signingIn()">sign in</button>
     <button class="button" (click)="signingUp()">sign up</button>
