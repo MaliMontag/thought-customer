@@ -4,29 +4,39 @@ import { Thought } from '../models/thought.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router, RouterLink, RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';
+import { AgeService } from '../services/age.service';
+import { Age } from '../models/age.model';
+import { CategoryService } from '../services/category.service';
+import { Category } from '../models/category.model';
 
 @Component({
   selector: 'app-home-page',
-  imports: [RouterLink, RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
 export class HomePage implements OnInit {
 
   listOfThoughts: Thought[] = [];
-  categories: string[] = [];
+  displayedThoughts: Thought[] = [];
+  categories: Category[] = [];
+  ageOptions: Age[] = [];
 
-  displayedThoughts = this.listOfThoughts;
 
-  constructor(private service: ThoughtService, private sanitizer: DomSanitizer, private router: Router) { }
+  constructor(private service: ThoughtService, private sanitizer: DomSanitizer, private router: Router, private _ageService: AgeService,private _categoryService:CategoryService) { }
 
-  //פונקצית הבאת כל הנתונים מהשרת
   ngOnInit(): void {
     this.service.getThoughts().subscribe({
       next: (data) => {
         this.listOfThoughts = data;
-        //יש פה בעיה....
-        this.categories = [...new Set(this.listOfThoughts.map(t => t.category.categoryName))];
+      },
+      error: (err) => {
+        console.error('Error fetching thoughts', err);
+      }
+    });
+    this._categoryService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
       },
       error: (err) => {
         console.error('Error fetching thoughts', err);
@@ -41,14 +51,27 @@ export class HomePage implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(fullUrl);
   }
 
-  // filterByCategory(categoryName: string) {
-  //   this.displayedThoughts=this.listOfThoughts.filter(
-  //   t => t.category.categoryName === categoryName
-  // );
-  // }
+  filterByCategory(categoryName: string) {
+    this.displayedThoughts = this.listOfThoughts.filter(
+      t => t.category.categoryName === categoryName
+    );
+  }
 
-  showAll(){
-    this.displayedThoughts=this.listOfThoughts;
+
+
+  filterByAge(event: Event) {
+    const selectedAge = Number((event.target as HTMLSelectElement).value);
+    if (!selectedAge) {
+      this.displayedThoughts = this.listOfThoughts;
+      return;
+    }
+    this.displayedThoughts = this.listOfThoughts.filter(t => t.age.id === selectedAge);
+  }
+
+
+
+  showAll() {
+    this.displayedThoughts = this.listOfThoughts;
   }
 
   //פונקצית מעבר להגיג ספציפי

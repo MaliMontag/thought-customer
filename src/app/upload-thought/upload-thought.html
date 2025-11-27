@@ -33,7 +33,7 @@
                 <label for="age">גיל:</label>
                 <select id="age" formControlName="age">
                     <option value="">בחר גיל</option>
-                    @for (age of ageOptions; track age){
+                    @for (age of ageOptions; track age.id){
                     <option [value]="age.id">{{ age.ageName }}</option>
                     }
                 </select>
