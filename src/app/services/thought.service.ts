@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Thought } from '../models/thought.model';
+import { map, catchError } from 'rxjs/operators';
+import { ChatRequest } from '../models/chatRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +24,23 @@ export class ThoughtService {
     return this.http.get<Thought>(`${this.baseUrl}/getThought/${id}`);
   }
   getThoughtByUserId(userId: number): Observable<Thought[]> {
-    return this.http.get<Thought[]>(`${this.baseUrl}/getThoughtsByUserI/${userId}`);
+    return this.http.get<Thought[]>(`${this.baseUrl}/getThoughtsByUserId/${userId}`);
   }
 
   uploadingThought(thoughtData: FormData): Observable<any> {
     return this.http.post(`${this.baseUrl}/uploadThought`, thoughtData, { withCredentials: true });
+  }
+
+  sendChatRequest(message:string, conversationId:string): Observable<string> {
+    const body: ChatRequest = {message, conversationId};
+    return this.http.post(`${this.baseUrl}/chat`, body, { withCredentials: true,
+        responseType: 'text'})
+      .pipe(
+        catchError(err => {
+          console.error('Error occurred while sending chat request:', err);
+          return of('Sorry, something went wrong. Please try again later.');
+        })
+      ) as Observable<string>;
   }
 
 }

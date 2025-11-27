@@ -1,0 +1,75 @@
+.chat-container {
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+.messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto; /* מאפשר גלילה בתוך תיבת הצ'אט */
+    background-color: #f9f9f9;
+}
+
+.message-row {
+    margin-bottom: 10px;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+/* סגנון הודעת המשתמש */
+.message.user {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto; /* מיישר לימין */
+}
+
+/* סגנון הודעת המערכת */
+.message.assistant {
+    background-color: #e0e0e0;
+    color: #333;
+    margin-right: auto; /* מיישר לשמאל */
+}
+
+/* סגנון הודעת שגיאה */
+.message.error {
+    background-color: #dc3545;
+    color: white;
+}
+
+.input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.input-area input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.input-area button {
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-area button:disabled {
+    background-color: #8fbb99;
+    cursor: not-allowed;
+}

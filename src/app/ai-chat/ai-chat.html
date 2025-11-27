@@ -1,0 +1,33 @@
+<div class="chat-container">
+    <div class="messages">
+        <!-- <div *ngFor="let msg of messages" class="message-row">
+            <div class="message {{ msg.role }}">
+                <strong>{{ msg.role === 'user' ? 'אני' : 'מערכת' }}:</strong> {{ msg.text }}
+            </div>
+        </div> -->
+        @for(msg of messages; track msg.text){
+        <div class="message-row">
+            <div class="message {{ msg.role }}">
+                <strong>{{ msg.role === 'user' ? 'אני' : 'מערכת' }}:</strong> {{ msg.text }}
+
+            </div>
+        </div>
+        }
+        @empty {
+            <div class="empty-chat">
+                <p>ברוך הבא לצ'אט! איך אפשר לעזור לך היום?</p>
+            </div>
+        }
+        <form (ngSubmit)="sendMessage()" class="input-area">
+            <input type="text" [(ngModel)]="currentMessage" name="currentMessage" placeholder="הקלד את הודעתך..."
+                required>
+            <button type="submit" [disabled]="!currentMessage || isSending">
+            @if(!isSending){
+                <span>שלח</span>
+            }
+            @else {
+                <span>שולח...</span>
+            }
+            </button>
+        </form>
+    </div>

@@ -15,7 +15,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class ThoughtDetails implements OnInit {
 
-  constructor(private _thoughtService: ThoughtService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
+  constructor(private _thoughtService: ThoughtService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router:Router) { }
 
   thought!: Thought;
 
@@ -42,5 +42,10 @@ export class ThoughtDetails implements OnInit {
     const fullUrl = 'data:image/jpeg;base64,' + base64Image;
     // חובה לעקוף את מנגנון האבטחה של Angular (DomSanitizer) עבור Data URIs
     return this.sanitizer.bypassSecurityTrustUrl(fullUrl);
+  }
+
+  responsing(thoughtId: number) {
+    this.router.navigate(['/add-response']);
+    localStorage.setItem("thoughtId", thoughtId.toString());
   }
 }

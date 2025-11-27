@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
     this.service.getThoughts().subscribe({
       next: (data) => {
         this.listOfThoughts = data;
+        //יש פה בעיה....
         this.categories = [...new Set(this.listOfThoughts.map(t => t.category.categoryName))];
       },
       error: (err) => {
@@ -40,11 +41,11 @@ export class HomePage implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(fullUrl);
   }
 
-  filterByCategory(categoryName: string) {
-    this.displayedThoughts=this.listOfThoughts.filter(
-    t => t.category.categoryName === categoryName
-  );
-  }
+  // filterByCategory(categoryName: string) {
+  //   this.displayedThoughts=this.listOfThoughts.filter(
+  //   t => t.category.categoryName === categoryName
+  // );
+  // }
 
   showAll(){
     this.displayedThoughts=this.listOfThoughts;

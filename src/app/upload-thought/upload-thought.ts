@@ -29,6 +29,7 @@ export class UploadThought {
 
 
   ngOnInit(): void {
+    //
     this.route.params.subscribe((params) => {
       const userIdString = localStorage.getItem('userId');
       if (userIdString) {
@@ -81,6 +82,8 @@ export class UploadThought {
     uploadData.append('title', this.uploadThoughtForm.get('title')!.value);
     uploadData.append('desc', this.uploadThoughtForm.get('desc')!.value);
     uploadData.append('age', this.uploadThoughtForm.get('age')!.value);
+    uploadData.append('userId', localStorage.getItem('userId')!);
+    uploadData.append('date', new Date().toISOString());
     this._thoughtsService.uploadingThought(uploadData).subscribe({
       next: (res) => {
         console.log(res);
