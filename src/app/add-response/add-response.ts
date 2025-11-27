@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Responses } from '../models/responses.model';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { ResponseService } from '../services/response.service';
+import { Users } from '../models/users.model';
+import { Thought } from '../models/thought.model';
 
 @Component({
   selector: 'app-add-response',
@@ -15,6 +17,8 @@ export class AddResponse {
 constructor(private responseService:ResponseService){}
   ngOnInit(): void {
    this.response=new Responses();
+   this.response.thought = new Thought();
+   this.response.user = new Users();
   }
 
   sendResponse(): void {

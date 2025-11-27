@@ -43,7 +43,7 @@ export class SignUp implements OnInit {
     this._usersService.singingUp(uploadData).subscribe({
       next: (res) => {
         console.log(res);
-        localStorage.setItem("userId", res.id);
+        // localStorage.setItem("userId", res.id);
         // this.router.navigate(["?"]);
 
       },
@@ -52,10 +52,10 @@ export class SignUp implements OnInit {
 
       }
     })
-
+    this.goToAccount();
   }
   goToAccount() {
-    this.router.navigate(["/my-account", localStorage.getItem("userId")]);
+    this.router.navigate(['/home-page']);
   }
 
 }

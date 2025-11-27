@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-thought-details',
   imports: [CommonModule, RouterOutlet],
@@ -15,11 +15,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class ThoughtDetails implements OnInit {
 
-  constructor(private _thoughtService: ThoughtService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router:Router) { }
+  constructor(private _thoughtService: ThoughtService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router,private cdRef: ChangeDetectorRef) { }
 
   thought!: Thought;
-
-//פונקציה המקבלת את ההגיג לי איידי מהשרת
+ //פונקציה המקבלת את ההגיג לי איידי מהשרת
   ngOnInit(): void {
     var id: number;
     this.route.params.subscribe((params) => {
@@ -27,8 +26,11 @@ export class ThoughtDetails implements OnInit {
       this._thoughtService.getThoughtById(id).subscribe({
         next: (res) => {
           this.thought = res;
+    //לרענן את התצוגה
+          this.cdRef.detectChanges();
           console.log(this.thought);
           
+
         },
         error: (err) => {
           console.log(err);
@@ -37,7 +39,7 @@ export class ThoughtDetails implements OnInit {
     })
   }
 
-    //פונקצית המרת התמונה
+  //פונקצית המרת התמונה
   getImageUrl(base64Image: string): SafeUrl {
     const fullUrl = 'data:image/jpeg;base64,' + base64Image;
     // חובה לעקוף את מנגנון האבטחה של Angular (DomSanitizer) עבור Data URIs
@@ -45,7 +47,7 @@ export class ThoughtDetails implements OnInit {
   }
 
   responsing(thoughtId: number) {
-    this.router.navigate(['/add-response']);
     localStorage.setItem("thoughtId", thoughtId.toString());
+    this.router.navigate(['/add-response']);
   }
 }

@@ -17,3 +17,4 @@ export class Thought{
     responseList?:Responses[];
     likesList?:Likes[];
 }
+

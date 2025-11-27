@@ -23,12 +23,14 @@ export class HomePage implements OnInit {
   ageOptions: Age[] = [];
 
 
-  constructor(private service: ThoughtService, private sanitizer: DomSanitizer, private router: Router, private _ageService: AgeService,private _categoryService:CategoryService) { }
+  constructor(private service: ThoughtService, private sanitizer: DomSanitizer, private router: Router, private _ageService: AgeService, private _categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.service.getThoughts().subscribe({
       next: (data) => {
-        this.listOfThoughts = data;
+        console.log("thoughts came from server");
+
+        this.displayedThoughts = data;
       },
       error: (err) => {
         console.error('Error fetching thoughts', err);
@@ -36,6 +38,8 @@ export class HomePage implements OnInit {
     });
     this._categoryService.getCategories().subscribe({
       next: (data) => {
+        console.log("categories came from server");
+
         this.categories = data;
       },
       error: (err) => {
