@@ -61,9 +61,9 @@
         <form [formGroup]="signInForm" (ngSubmit)="signingIn()">
             
             <div class="form-group">
-                <label for="email">אימייל (eMail):</label>
-                <input type="email" id="email" formControlName="eMail" placeholder="your@example.com" class="form-control" />
-                @if (signInForm.get('eMail')?.invalid && signInForm.get('eMail')?.touched) {
+                <label for="email">אימייל (email):</label>
+                <input type="email" id="email" formControlName="email" placeholder="your@example.com" class="form-control" />
+                @if (signInForm.get('email')?.invalid && signInForm.get('email')?.touched) {
                     <p class="validation-error">אנא הכנס כתובת אימייל תקינה.</p>
                 }
             </div>

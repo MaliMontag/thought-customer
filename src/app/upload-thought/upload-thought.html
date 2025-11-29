@@ -1,7 +1,7 @@
 <div>
     <div>
         <h2>Upload Your Thought</h2>
-        @if(user!=null){
+        @if(user){
         <form [formGroup]="uploadThoughtForm" (ngSubmit)="uploading()">
             <div>
                 <label for="title">:(Title) כותרת</label>

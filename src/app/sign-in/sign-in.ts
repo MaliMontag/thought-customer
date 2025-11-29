@@ -16,7 +16,7 @@ export class SignIn implements OnInit {
 
   public signInForm: FormGroup = new FormGroup({
     'password': new FormControl("", Validators.required),
-    'eMail': new FormControl("", Validators.required)
+    'email': new FormControl("", Validators.required)
   })
 
   constructor(public _usersService: UsersService, private router: Router) { }
@@ -28,11 +28,13 @@ export class SignIn implements OnInit {
       next: (res) => {
         console.log(res);
          alert("התחברת בהצלחה!");
-        localStorage.setItem("userId",res );
+        localStorage.setItem("userId",res.id );
         this.router.navigate(["/my-account"]);
       },
       error: (err) => {
         console.log(err);
+        console.log("no no no");
+        
         // alert("אימייל או סיסמה שגויים, נסה שוב.");
       }
     })

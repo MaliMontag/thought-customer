@@ -27,8 +27,8 @@ export class ThoughtService {
     return this.http.get<Thought[]>(`${this.baseUrl}/getThoughtsByUserId/${userId}`);
   }
 
-  uploadingThought(thoughtData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/uploadThought`, thoughtData, { withCredentials: true });
+  uploadingThought(thought: Thought): Observable<any> {
+    return this.http.post(`${this.baseUrl}/uploadThought`, thought, { withCredentials: true });
   }
 
   sendChatRequest(message:string, conversationId:string): Observable<string> {
